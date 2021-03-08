@@ -1,10 +1,10 @@
 
 export const register = (req, res, next) => {
-    res.send('registering')
+
 }
 
 export const login = (req, res, next) => {
-    res.send('logging in')
+    res.send('working')
 }
 
 export const forgotPassword = () => {

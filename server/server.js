@@ -6,6 +6,7 @@ import dotEnv from 'dotenv';
 import { router } from './routes/auth-routes.js'
 import { connectDB } from "./config/db.js";
 import { errorHandler } from "./middlewares/error.js";
+import { PrivateRouter } from "./routes/private.js";
 
 
 dotEnv.config()
@@ -22,6 +23,8 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 
 app.use('/api/auth', router)
+app.use('/api/private',PrivateRouter )
+
 app.use(errorHandler)
 
 const PORT = process.env.PORT || 5000

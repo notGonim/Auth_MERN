@@ -1,4 +1,4 @@
-import ErrorResponse from "../utils/error-handling"
+import {ErrorResponse} from "../utils/error-handling.js"
 
 
 

@@ -13,12 +13,7 @@ export const register = async (req, res, next) => {
                 email,
                 password,
             });
-        res.status(201).json(
-            {
-                success: true,
-                user
-            }
-        )
+        sendToken(user, 201, res)
     } catch (err) {
         next(err)
     }
@@ -37,11 +32,9 @@ export const login = async (req, res, next) => {
         const isMatch = await user.matchPassword(password)
         if (!isMatch)
             return next(new ErrorResponse("Invalid Crediential", 404))
-            
-        res.status(200).json({
-            success: true,
-            token: "tr34f3443fc"
-        })
+
+        sendToken(user, 200, res)
+
     } catch (err) {
         next(err)
     }
@@ -54,4 +47,9 @@ export const forgotPassword = () => {
 
 export const resetPassword = () => {
 
+}
+
+export const sendToken = (user, statusCode, res) => {
+    const token = user.getSignToken()
+    res.status(statusCode).json({ success: true, token })
 }
